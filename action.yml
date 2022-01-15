@@ -1,11 +1,26 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Mark Notification Read'
+description: 'Marks any GitHub notification matching the settings as read - silence bot spam automatically!'
+author: 'mKeRix'
 inputs:
-  milliseconds: # change this
+  token:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'GitHub Personal Access Token that has permissions for managing your notifications'
+  user-filter:
+    required: false
+    description: 'Comma-separated filter that selects users from which notifications will be marked as read'
+    default: 'dependabot[bot],dependabot-preview[bot]'
+  state-filter:
+    required: false
+    description: 'Comma-separated filter that selects issues/pull request states for which notifications will be marked as read'
+    default: ''
+  reason-filter:
+    required: false
+    description: 'Comma-separated filter that selects notifications reasons which will be marked as read'
+    default: ''
+  dry-run:
+    required: false
+    description: 'If set to true, it will only log the actions it would perform instead of actually doing them'
+    default: 'false'
 runs:
   using: 'node12'
   main: 'dist/index.js'
